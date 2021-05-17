@@ -1,5 +1,5 @@
+import { Buffer } from 'buffer/';
 import { raw } from './raw';
-
 
 export class Parser {
   readonly actions;
@@ -34,7 +34,7 @@ export class Parser {
     if (data.entityId < 0) throw new Error('Invalid entityId. entityId cant be negative!');
 
     const buf = Buffer.alloc(5);
-    buf.writeInt8(this.actions[data.action]);
+    buf.writeInt8(this.actions[data.action], 0);
 
     if (data.entityId === 'All')
       buf.writeUInt32BE(this.MAX_VALUE, 1);
